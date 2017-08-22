@@ -1,0 +1,50 @@
+Sub 収支報告書マクロ３()
+
+  Dim myWSss As Worksheet
+
+  For Each myWSss In Worksheets
+      If myWSss.Name Like "商品売上サマリー*" Then
+          If ActiveSheet.Name Like "商品売上サマリー*" Then
+              myWSss.Select (False)
+            Else
+              myWSss.Select
+          End If
+      End If
+  Next
+
+  Columns("A:N").Copy
+  ActiveSheet.Select
+  Columns("A:N").PasteSpecial Paste:=xlPasteValues
+
+  Range("A2",Range("A2").End(xlDown)).Name = "全商品名一覧"
+    Range("全商品名一覧").Copy
+      Range("V1").Select
+      ActiveSheet.Paste
+      ActiveSheet.Cells(Rows.Count, 22).End(xlUp).Offset(1, 0).Select
+      ActiveSheet.Paste
+
+  Range("C2",Range("C2").End(xlDown)).Name = "全商品番号一覧"
+    Range("全商品番号一覧").Copy
+      Range("W1").Select
+      ActiveSheet.Paste
+      ActiveSheet.Cells(Rows.Count, 23).End(xlUp).Offset(1, 0).Select
+      ActiveSheet.Paste
+
+  Range("N2",Range("N2").End(xlDown)).Name = "全商品単価一覧"
+    Range("全商品単価一覧").Copy
+      Range("X1").Select
+      ActiveSheet.Paste
+      ActiveSheet.Cells(Rows.Count, 24).End(xlUp).Offset(1, 0).Select
+      ActiveSheet.Paste
+
+  Range("M2",Range("M2").End(xlDown)).Name = "全現金商品販売数一覧"
+    Range("全現金商品販売数一覧").Copy
+      Range("Y1").Select
+      ActiveSheet.Paste
+
+    Range("L2",Range("L2").End(xlDown)).Name = "全クレジット商品販売数一覧"
+      Range("全クレジット商品販売数一覧").Copy
+      ActiveSheet.Cells(Rows.Count, 25).End(xlUp).Offset(1, 0).Select
+      ActiveSheet.Paste
+
+End Sub
