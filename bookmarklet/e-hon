@@ -1,0 +1,19 @@
+var title = document.getElementsByClassName("itemTitle")[0].innerText;
+var author = document.getElementsByClassName("AuthorsName")[0].innerText;
+var pub = document.getElementsByTagName("td")[1].innerText;
+var date = document.getElementsByTagName("td")[2].innerText;
+var a = document.getElementsByTagName("td")[3].innerText;
+var b = a.replace("\n", "");
+var regExp = new RegExp("-","g");
+var c = b.replace(regExp,"");
+var d = new RegExp(" （..........）","g");
+var isbn = c.replace(d,"");
+var price = document.getElementsByTagName("td")[4].innerText;
+var contents = title +"\t"+ author +"\t"+ pub +"\t"+ date +"\t"+ isbn +"\t"+ price;
+
+//要素の作成
+var info = document.createElement('textarea');
+info.textContent = contents;
+document.body.appendChild(info);
+info.select();
+document.execCommand("copy");
